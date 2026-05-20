@@ -3,94 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ned til fredag</title>
+    <title>Nedtælling til Fredag</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --accent-color: #38bdf8;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background: #0d0d0d;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
-        .container {
-            text-align: center;
-        }
-
-        h1 {
+        .title {
+            font-size: 1.5rem;
             font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            color: #94a3b8;
+            margin-bottom: 3rem;
+            letter-spacing: 0.8rem;
+            text-transform: uppercase;
+            opacity: 0.7;
+            /* Animation til teksten */
+            animation: floatText 4s ease-in-out infinite;
         }
 
-        #timer {
+        .bubble-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 3rem 4rem;
+            border-radius: 80px;
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            /* Boble-animation */
+            animation: float 6s ease-in-out infinite;
         }
 
-        .unit {
-            display: flex;
-            flex-direction: column;
+        .bubble-card::before {
+            content: "";
+            position: absolute;
+            top: -30px; left: -30px; right: -30px; bottom: -30px;
+            background: radial-gradient(circle at 30% 30%, rgba(167, 139, 250, 0.4), transparent 60%),
+                        radial-gradient(circle at 70% 70%, rgba(56, 189, 248, 0.4), transparent 60%);
+            filter: blur(60px);
+            z-index: -1;
+            border-radius: 100px;
         }
 
+        .unit { text-align: center; }
+        
         .number {
             font-size: 4rem;
-            font-weight: 700;
-            color: var(--accent-color);
+            font-weight: 600;
+            color: #ffffff;
+            font-variant-numeric: tabular-nums;
         }
 
         .label {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
+            letter-spacing: 0.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+        }
+
+        /* Animationer */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(1deg); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-10px); opacity: 0.9; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>NEDTÆLLING TIL FREDAG</h1>
-        <div id="timer">
-            <div class="unit"><span id="days" class="number">00</span><span class="label">Dage</span></div>
-            <div class="unit"><span id="hours" class="number">00</span><span class="label">Timer</span></div>
-            <div class="unit"><span id="minutes" class="number">00</span><span class="label">Min</span></div>
-            <div class="unit"><span id="seconds" class="number">00</span><span class="label">Sek</span></div>
-        </div>
+    <div class="title">Nedtælling til fredag</div>
+
+    <div class="bubble-card">
+        <div class="unit"><div id="days" class="number">00</div><div class="label">Dage</div></div>
+        <div class="unit"><div id="hours" class="number">00</div><div class="label">Timer</div></div>
+        <div class="unit"><div id="minutes" class="number">00</div><div class="label">Min</div></div>
+        <div class="unit"><div id="seconds" class="number">00</div><div class="label">Sek</div></div>
     </div>
 
     <script>
         function updateTimer() {
             const now = new Date();
-            // Find kommende fredag (dag 5)
             let friday = new Date();
             friday.setDate(now.getDate() + (5 + 7 - now.getDay()) % 7);
             friday.setHours(0, 0, 0, 0);
 
+            if (now.getDay() === 5 && now.getHours() >= 0) {
+                 friday.setDate(friday.getDate() + 7);
+            }
+
             const diff = friday - now;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(d).padStart(2, '0');
-            document.getElementById('hours').innerText = String(h).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }
-
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
