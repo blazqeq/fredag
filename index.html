@@ -3,54 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savannah Sophia Sonne | Live Dashboard</title>
+    <title>MCBLOCKED // APPLY_SYSTEM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --twitch-purple: #9146FF; --bg-dark: #0e0e10; --card-bg: #18181b; }
-        body { margin: 0; background-color: var(--bg-dark); color: white; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; }
-        
-        .header { padding: 40px 20px; text-align: center; }
-        h1 { margin: 0; color: var(--twitch-purple); font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
-
-        .container { width: 95%; max-width: 1000px; }
-
-        /* Twitch Live Embed */
-        #twitch-live { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-
-        /* Clips Grid */
-        .clips-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 40px; margin-bottom: 60px; }
-        .clip-box { border-radius: 8px; overflow: hidden; background: var(--card-bg); border: 1px solid #333; }
-        .clip-box iframe { width: 100%; display: block; }
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background: #050505; color: #e5e5e5; font-family: 'JetBrains Mono', monospace; }
+        .glass { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(0, 255, 136, 0.2); }
+        .glow-green { text-shadow: 0 0 10px #00ff88; color: #00ff88; }
+        .btn-apply:hover { box-shadow: 0 0 15px #00ff88; background: #00ff88; color: #000; }
     </style>
 </head>
-<body>
+<body class="p-6 md:p-12">
 
-    <div class="header">
-        <h1>Savannah Sophia Sonne</h1>
-    </div>
+    <header class="max-w-4xl mx-auto mb-16 text-center">
+        <h1 class="text-5xl font-black glow-green uppercase tracking-tighter">mcblocked // forum</h1>
+        <p class="text-white/40 mt-4">// VÆLG KATEGORI FOR ANSØGNING</p>
+    </header>
 
-    <div class="container">
-        <!-- Live Player -->
-        <div id="twitch-live"></div>
+    <main class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <a href="#" class="glass p-8 rounded-2xl border-l-4 border-l-[#00ff88] group transition-all">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-[#00ff88]">Hjælper</h2>
+            <p class="text-sm text-white/50 mb-6">Bliv en del af vores staff-team og hjælp spillerne.</p>
+            <span class="btn-apply border border-[#00ff88] text-[#00ff88] px-6 py-2 rounded-lg text-sm transition-all uppercase">Start Ansøgning</span>
+        </a>
 
-        <!-- Clips -->
-        <div class="clips-container">
-            <div class="clip-box"><iframe src="https://clips.twitch.tv/embed?clip=EmpathicMotionlessBasenjiFrankerZ-oP8IuqXbJGhEwQTN&parent=www.example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="100%"></iframe></div>
-            <div class="clip-box"><iframe src="https://clips.twitch.tv/embed?clip=TrappedThirstyCookieSMOrc-rC9apntsTKINQkyw&parent=www.example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="100%"></iframe></div>
-            <div class="clip-box"><iframe src="https://clips.twitch.tv/embed?clip=CheerfulCrackyHamburgerBCouch-6_WU5Bu6KB2V4m91&parent=www.example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="100%"></iframe></div>
-        </div>
-    </div>
+        <a href="#" class="glass p-8 rounded-2xl border-l-4 border-l-[#00ff88] group transition-all">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-[#00ff88]">Bygger</h2>
+            <p class="text-sm text-white/50 mb-6">Vis dine skills og byg verdener til vores server.</p>
+            <span class="btn-apply border border-[#00ff88] text-[#00ff88] px-6 py-2 rounded-lg text-sm transition-all uppercase">Start Ansøgning</span>
+        </a>
 
-    <!-- Twitch Script -->
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script type="text/javascript">
-      new Twitch.Embed("twitch-live", {
-        width: "100%",
-        height: "100%",
-        channel: "savannahsophiasonne",
-        layout: "video",
-        autoplay: true,
-        muted: false
-      });
-    </script>
+        <a href="#" class="glass p-8 rounded-2xl border-l-4 border-l-[#00ff88] group transition-all">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-[#00ff88]">Content Creator</h2>
+            <p class="text-sm text-white/50 mb-6">Skab indhold og repræsenter mcblocked.dk.</p>
+            <span class="btn-apply border border-[#00ff88] text-[#00ff88] px-6 py-2 rounded-lg text-sm transition-all uppercase">Start Ansøgning</span>
+        </a>
+
+        <a href="#" class="glass p-8 rounded-2xl border-l-4 border-l-[#ff4747] group transition-all border-l-[#ff4747]">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-[#ff4747]">Unban</h2>
+            <p class="text-sm text-white/50 mb-6">Blev du banned? Indsend en appel her.</p>
+            <span class="border border-[#ff4747] text-[#ff4747] px-6 py-2 rounded-lg text-sm transition-all uppercase hover:bg-[#ff4747] hover:text-white">Start Ansøgning</span>
+        </a>
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto mt-20 text-[10px] text-white/20 text-center uppercase tracking-[0.2em]">
+        System ready // All applications are monitored // mcblocked.dk 2026
+    </footer>
+
 </body>
 </html>
